@@ -9,7 +9,7 @@ export class ServiceService {
 
   public changeStatus$: Subject<boolean> = new Subject();
 
-  private BASE_URL = "http://localhost:5000/api/";
+  private BASE_URL = "https://sell-everything.herokuapp.com/api/";
 
   constructor(private http: HttpClient) { }
 
