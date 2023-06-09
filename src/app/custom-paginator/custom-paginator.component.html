@@ -1,0 +1,5 @@
+<div class="custom-paginator">
+    <button class="paginator-button" [disabled]="pageIndex === 0" (click)="onPageChange(pageIndex - 1)">Previous</button>
+    <span class="paginator-info">{{ pageIndex + 1 }} / {{ totalPages }}</span>
+    <button class="paginator-button" [disabled]="pageIndex === totalPages - 1" (click)="onPageChange(pageIndex + 1)">Next</button>
+  </div>  

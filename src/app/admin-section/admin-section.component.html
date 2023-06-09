@@ -1,0 +1,55 @@
+<div class="admin">
+  <div class="admin-section-wrapper">
+    <div class="table-content">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Users</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="users.length else loading">
+            <ng-container *ngFor="let user of users; let i = index">
+              <tr>
+                <td>
+                  <img
+                    [src]="user.imageURL"
+                    height="30px"
+                    width="30px"
+                    alt=""
+                    class="image"
+                  />
+                  <b style="margin-left: 10px">{{
+                    user.firstName + ' ' + user.lastName
+                  }}</b>
+                  <div class="action-icon">
+                    <span class="icon delete-icon" (click)="deleteUser(user._id, i)">
+                      <span class="material-symbols-outlined"> delete </span>
+                    </span>
+                    <span class="icon update-icon" (click)="onEditUser(user)">
+                      <span class="material-symbols-outlined"> edit </span>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+              
+            </ng-container>
+          </ng-container>
+          <ng-template #loading>Loading Data .....</ng-template>
+        </tbody>
+        <div class="load-item-wrapper">
+          <div *ngIf="!showAllItems">
+            <button (click)="loadAllUsers()"><span>Load More</span></button>
+          </div>
+          <div *ngIf="showAllItems">
+            <button (click)="lessShowUsers()"><span>Less</span></button>
+          </div>
+        </div>
+      </table>
+    </div>
+    <div class="resource-section">
+    <app-resource-item-list></app-resource-item-list>
+  </div>
+  </div>
+  
+</div>

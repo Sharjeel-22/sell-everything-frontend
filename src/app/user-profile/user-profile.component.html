@@ -1,0 +1,32 @@
+<div class="main-wrapper">
+    <div class="card">
+        <div class="profile">
+            <div class="image">
+                <img [src]="userData.imageURL" alt="" srcset="">
+                <button (click)="logOut()">LogOut</button>
+            </div>
+        </div>
+        <hr>
+        <div class="name">
+            <p>
+                Name : {{userData.firstName + " " + userData.lastName | uppercase}}
+            </p>
+            <p>
+                Email : {{userData.email | uppercase}}
+            </p>
+            <p>
+                Role : {{userData.role | uppercase}}
+            </p>
+            <div class="loader-wrapper" *ngIf="loader">
+                <app-logout-loader></app-logout-loader>
+            </div>
+            <div class="button">
+                <div class="edit-button">
+                    <app-edit-button></app-edit-button>
+                    <span (click)="deleteAccount()" style="margin-left: 5px;"><app-delete-button></app-delete-button></span>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

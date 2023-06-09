@@ -1,0 +1,37 @@
+<div class="main-wrapper">
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <p class="title">Register </p>
+        <div class="show-selected-image">
+            <div class="flex-img">
+                <img [src]="user.imageURL" alt="">
+            </div>
+        </div>
+        <label>
+        </label>
+        <div class="flex">
+            <label>
+                <input formControlName="firstName" name="firstName" readonly placeholder="" type="text" class="input">
+                <span>First name</span>
+            </label>
+            <label>
+                <input formControlName="lastName" readonly name="lastName" placeholder="" type="text" class="input">
+                <span>Lastname</span>
+            </label>
+        </div>
+
+        <label>
+            <input  placeholder="" type="email" formControlName="email"  name="email" class="input">
+            <span>Email</span>
+        </label>
+
+        <label>
+            <input formControlName="password" name="password" placeholder="" type="text" class="input">
+            <span>Password</span>
+        </label>
+        <label>
+            <input formControlName="role" name="Role" placeholder="" type="text" class="input">
+            <span>Role</span>
+        </label>
+        <button class="submit">Submit</button>
+    </form>
+</div>

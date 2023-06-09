@@ -1,0 +1,39 @@
+<div class="main-wrapper">
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <p class="title">Register </p>
+        <p class="message">Signup now and get full access to our app. </p>
+        <div class="show-selected-image">
+            <div class="flex-img" *ngIf="showImg">
+                <img [src]="ImgStore" alt="">
+            </div>
+        </div>
+        <div class="flex-file">
+            <input placeholder="" formControlName="imageURL" enctype="multipart/form-data" name="imageURL" accept="image/png, image/jpeg, image/jpg " (change)="getImg($event)" #img
+                type="file" id="file-input" class="input">
+        </div>
+        <label>
+        </label>
+        <div class="flex">
+            <label>
+                <input formControlName="firstName" name="firstName" placeholder="" type="text" class="input">
+                <span>Firstname</span>
+            </label>
+            <label>
+                <input formControlName="lastName" name="lastName" placeholder="" type="text" class="input">
+                <span>Lastname</span>
+            </label>
+        </div>
+
+        <label>
+            <input  placeholder="" type="email" formControlName="email" name="email" class="input">
+            <span>Email</span>
+        </label>
+
+        <label>
+            <input formControlName="password" name="password" placeholder="" type="password" class="input">
+            <span>Password</span>
+        </label>
+        <button class="submit">Submit</button>
+        <p class="signin">Already have an acount ? <a [routerLink]="['/user-login']">Sign in</a> </p>
+    </form>
+</div>

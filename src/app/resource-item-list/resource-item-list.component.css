@@ -1,0 +1,139 @@
+.admin-section-wrapper {
+    width: 100%;
+    height: auto;
+    margin: 20px;
+  }
+
+  .table-content {
+    overflow-x: auto;
+  }
+
+  .data-table {
+    width: 90%;
+    border-collapse: collapse;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    position: relative;
+    text-align: left;
+  }
+  td > .image{
+    border-radius: 50%;
+  }
+  .action-icon {
+    margin: 10px;
+  }
+
+  .data-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+
+  .data-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .data-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    position: relative;
+  }
+  
+  .icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    right: 8px; 
+  }
+  
+  .delete-icon {
+    right: 28px;
+  }
+  .material-symbols-outlined {
+    cursor: pointer;
+  }
+  
+  .update-icon {
+    /* background-color: yellow; */
+    right: 48px;
+  }
+  
+  .permission-icon {
+    /* background-color: green; */
+    right: 68px; 
+  }
+.admin {
+  display: flex;
+  justify-content: center;
+}
+.load-item-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 15px;
+}
+button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background: #183153;
+  font-family: "Montserrat", sans-serif;
+  box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+ }
+ 
+ button:after {
+  content: " ";
+  width: 0%;
+  height: 100%;
+  background: #FFD401;
+  position: absolute;
+  transition: all 0.4s ease-in-out;
+  right: 0;
+ }
+ 
+ button:hover::after {
+  right: auto;
+  left: 0;
+  width: 100%;
+ }
+ 
+ button span {
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 1.125em;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  z-index: 20;
+  transition: all 0.3s ease-in-out;
+ }
+ 
+ button:hover span {
+  color: #183153;
+  animation: scaleUp 0.3s ease-in-out;
+ }
+ 
+ @keyframes scaleUp {
+  0% {
+   transform: scale(1);
+  }
+ 
+  50% {
+   transform: scale(0.95);
+  }
+ 
+  100% {
+   transform: scale(1);
+  }
+ }
