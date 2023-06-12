@@ -3,7 +3,11 @@
         <div class="profile">
             <div class="image">
                 <img [src]="userData.imageURL" alt="" srcset="">
-                <button (click)="logOut()">LogOut</button>
+            </div>
+        </div>
+        <div class="logout-button">
+            <div (click)="logOut()">
+                <app-logout-button></app-logout-button>
             </div>
         </div>
         <hr>

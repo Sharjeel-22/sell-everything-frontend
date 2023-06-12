@@ -51,7 +51,6 @@ export class UserProfileComponent implements OnInit {
         timer: 1500
       })
       this.loader = false;
-      this.service.changeStatus$.next(false);
       this.router.navigateByUrl("/user-login");
     }, 2000);
   }
@@ -79,7 +78,7 @@ export class UserProfileComponent implements OnInit {
             timer: 1500
           })
           this.router.navigateByUrl("/user-login");
-        }, 2000);
+        }, 1500);
       }
     })
   }

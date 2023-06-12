@@ -48,6 +48,12 @@ export class UserLoginComponent implements OnInit {
             timer: 1500
           })
           this.loader = false;
+          let role = this.storageService.getSession("userRole");
+          if(role == "admin"){
+            this.service.changeStatus$.next("admin");
+          }else{
+            this.service.changeStatus$.next("user");
+          }
           this.service.changeStatus$.next(true);
           this.router.navigateByUrl("/home/user-profile");
         }, 3000)

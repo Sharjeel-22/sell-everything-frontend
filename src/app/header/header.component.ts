@@ -10,6 +10,9 @@ import Swal from 'sweetalert2';
 })
 export class HeaderComponent implements OnInit{
   public showItems: boolean = false;
+  public permission: boolean = false;
+  public showAdmin: boolean = false;
+  public showUser: boolean = false;
 
   constructor(private storageService:StorageServiceService,private service:ServiceService,private router:Router){}
 
@@ -32,14 +35,23 @@ export class HeaderComponent implements OnInit{
   }
 
   public showSpacificItems():void {
-    let token = this.storageService.getSession("token");
+    let role = this.storageService.getSession("userRole");
+    if(!role) {
+      this.showAdmin = false;
+      this.showUser = false;
+    }
     this.service.changeStatus$.subscribe((res:boolean) => {
       this.showItems = res;
     })
-    if(!token){
-      this.showItems = false;
-    }else {
-      // this.showItems = true;
-    }
+      this.service.changeStatus$.subscribe((res:any) => {
+        if(res == "admin") {
+          this.showAdmin = true;
+          this.showUser = false;
+        }
+        if(res == "user") {
+          this.showUser = true;
+          this.showAdmin = false;
+        }
+      })
   }
 }

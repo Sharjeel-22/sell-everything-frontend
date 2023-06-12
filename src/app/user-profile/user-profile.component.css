@@ -37,6 +37,10 @@
   --color-shadow: #00000080;
 }
 
+.logout-button {
+  display: flex;
+  justify-content: flex-end;
+}
 .btn-content {
   display: flex;
   align-items: center;

@@ -30,7 +30,8 @@ export class UpdateUserComponent {
   }
 
   public formValidation(): void {
-    let data = this.storageService.getLocalStorage("userDetail");
+    let data = this.storageService.getLocalStorage("user-detail");
+    console.log("data :: ",data);
     this.user.firstName = data.firstName;
     this.user.lastName = data.lastName;
     this.user.imageURL = data.imageURL;
@@ -42,7 +43,7 @@ export class UpdateUserComponent {
       lastName: new FormControl(this.user.lastName, Validators.required),
       email: new FormControl(this.user.email, [Validators.required, Validators.email]),
       password: new FormControl(this.user.password ? this.user.password : '', [Validators.required, Validators.maxLength(14), Validators.minLength(8)]),
-      imageURL: new FormControl(""),
+      imageURL: new FormControl(this.user.imageURL),
     })
 
     if (data.imageURL) {
@@ -67,14 +68,9 @@ export class UpdateUserComponent {
         timer: 1500
       })
       setTimeout(() => {
-        this.router.navigateByUrl("/home/admin-section");
+        this.router.navigateByUrl("/home/user-profile");
       }, 1000);
-      console.log("Check :: ", res);
+      
     })
-  }
-  public getImg(img: any) {
-    this.ImgStore = URL.createObjectURL(img.target.files[0]);
-    this.selectedFile = img.target.files[0];
-    this.showImg = true;
   }
 }

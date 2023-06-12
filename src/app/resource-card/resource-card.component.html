@@ -19,11 +19,6 @@
         <p class="desc">
           {{re.description}}
         </p>
-  
-        <a href="#" class="action">
-          Find out more
-          <span aria-hidden="true"> → </span>
-        </a>
         <ng-container *ngFor="let comment of re.comments;let i = index">
           <div class="comments-list">
             <div class="delete-post" *ngIf="comment.userId == userId || userRole === 'admin'">

@@ -34,6 +34,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { CustomPaginatorComponent } from './custom-paginator/custom-paginator.component';
 import { ResourceItemListComponent } from './resource-item-list/resource-item-list.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { LogoutButtonComponent } from './logout-button/logout-button.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,9 @@ import { UpdateUserComponent } from './update-user/update-user.component';
     DeleteButtonComponent,
     CustomPaginatorComponent,
     ResourceItemListComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    ContactUsComponent,
+    LogoutButtonComponent
   ],
   imports: [
     BrowserModule,

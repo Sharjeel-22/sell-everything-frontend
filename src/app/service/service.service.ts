@@ -7,7 +7,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class ServiceService {
 
-  public changeStatus$: Subject<boolean> = new Subject();
+  public changeStatus$: Subject<any> = new Subject();
 
   private BASE_URL = "https://sell-everything.herokuapp.com/api/";
 

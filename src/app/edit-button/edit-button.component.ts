@@ -19,7 +19,7 @@ export class EditButtonComponent implements OnInit {
 
   public onEditUser(): void {
     this.storageService.localStorage("user-detail", this.user);
-    this.router.navigateByUrl("/home/update-user-detail/" + this.user._id)
+    this.router.navigateByUrl("/home/update-user/" + this.user._id)
   }
 
 }

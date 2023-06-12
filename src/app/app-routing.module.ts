@@ -18,6 +18,7 @@ import { UpdateResourceComponent } from './update-resource/update-resource.compo
 import { RoleGuard } from './role.guard';
 import { AdminGuard } from './admin.guard';
 import { UpdateUserComponent } from './update-user/update-user.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'user-registration',
     component: UserRegistrationComponent
+  },
+  {
+    path:'contact-us',
+    component:ContactUsComponent
   },
   {
     path: 'home',
