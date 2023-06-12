@@ -1,8 +1,10 @@
 <div class="main-wrapper">
     <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
-        <p class="title">Register </p>
-        <p class="message">Signup now and get full access to our app. </p>
+        <p class="title">User Update </p>
         <div class="show-selected-image">
+            <div class="flex-img" *ngIf="!showImg">
+                <img [src]="user.imageURL" alt="">
+            </div>
             <div class="flex-img" *ngIf="showImg">
                 <img [src]="ImgStore" alt="">
             </div>
@@ -16,11 +18,11 @@
         </label>
         <div class="flex">
             <label>
-                <input formControlName="firstName" name="firstName" placeholder="" type="text" class="input">
-                <span>Firstname</span>
+                <input formControlName="firstName" name="firstName" readonly placeholder="" type="text" class="input">
+                <span>First name</span>
             </label>
             <label>
-                <input formControlName="lastName" name="lastName" placeholder="" type="text" class="input">
+                <input formControlName="lastName" readonly name="lastName" placeholder="" type="text" class="input">
                 <span>Lastname</span>
             </label>
         </div>
@@ -31,10 +33,13 @@
         </label>
 
         <label>
-            <input formControlName="password" name="password" placeholder="" type="password" class="input">
+            <input formControlName="password" name="password" placeholder="" type="text" class="input">
             <span>Password</span>
         </label>
+        <label>
+            <input formControlName="role" name="Role" placeholder="" type="text" class="input">
+            <span>Role</span>
+        </label>
         <button class="submit">Submit</button>
-        <p class="signin">Already have an acount ? <a [routerLink]="['/user-login']">Sign in</a> </p>
     </form>
 </div>

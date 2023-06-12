@@ -10,52 +10,52 @@ import { ResourceService } from '../resourceService/resource.service';
   styleUrls: ['./resource-item-list.component.css']
 })
 export class ResourceItemListComponent implements OnInit {
-  public resources:any[]=[];
+  public resources: any[] = [];
   public displayItemCount = 5;
   public showAllItems = false;
 
   constructor(
-    private resouceService:ResourceService,
-    private storageService:StorageServiceService,
-    private router:Router
-    ){}
+    private resouceService: ResourceService,
+    private storageService: StorageServiceService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-    this.getAllUsers();
+    this.getAllResource();
   }
 
- public getAllUsers():void {
-  let token = this.storageService.getSession("token");
-    this.resouceService.getAllResouces(token).subscribe((res:any) => {
+  public getAllResource(): void {
+    let token = this.storageService.getSession("token");
+    this.resouceService.getAllResouces(token).subscribe((res: any) => {
       this.resources = [...res.results];
       const itemCount = this.showAllItems ? this.resources?.length : this.displayItemCount;
-      this.resources = this.resources.slice(0,itemCount);
-      console.log("Check :: users :: ",this.resources.length)
+      this.resources = this.resources.slice(0, itemCount);
+      console.log("Check :: resource :: ", this.resources.length)
     })
-    this.storageService.deleteLocalStorage("userDetail");
+    this.storageService.deleteLocalStorage("resource");
   }
-  public deleteResouce(userId:any,index:number):void {
-    this.resources.forEach((res:any) => {
-      if(res._id === userId){
+  public deleteResouce(userId: any, index: number): void {
+    this.resources.forEach((res: any) => {
+      if (res._id === userId) {
         let token = this.storageService.getSession("token");
-        this.resouceService.deleteResource(res._id,token).subscribe((res:any) => {
-          console.log("Check :: ",res);
+        this.resouceService.deleteResource(res._id, token).subscribe((res: any) => {
+          console.log("Check :: ", res);
         })
       }
     })
-    this.resources = this.resources.filter((res:any) => res._id !== userId);
+    this.resources = this.resources.filter((res: any) => res._id !== userId);
   }
-  public onEditUser(user:any):void {
-    this.storageService.localStorage("userDetail",user);
-    this.router.navigateByUrl("/home/update-user-detail/"+user._id);
+  public onEditResource(resource: any): void {
+    this.storageService.localStorage("resource", resource);
+    this.router.navigateByUrl("/home/update-user-detail/" + resource._id);
   }
 
-  public loadAllUsers():void {
+  public loadAllResources(): void {
     this.showAllItems = true;
-    this.getAllUsers();
+    this.getAllResource();
   }
-  public lessShowUsers():void {
+  public lessShowResources(): void {
     this.showAllItems = false;
-    this.getAllUsers();
+    this.getAllResource();
   }
 }

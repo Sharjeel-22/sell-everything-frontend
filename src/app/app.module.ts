@@ -33,6 +33,7 @@ import { DeleteButtonComponent } from './delete-button/delete-button.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CustomPaginatorComponent } from './custom-paginator/custom-paginator.component';
 import { ResourceItemListComponent } from './resource-item-list/resource-item-list.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { ResourceItemListComponent } from './resource-item-list/resource-item-li
     CommentLoaderComponent,
     DeleteButtonComponent,
     CustomPaginatorComponent,
-    ResourceItemListComponent
+    ResourceItemListComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,

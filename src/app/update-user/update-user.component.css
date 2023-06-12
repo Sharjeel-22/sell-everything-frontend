@@ -1,0 +1,177 @@
+.main-wrapper{
+  display: flex;
+  background-color: #eeeeee;
+  justify-content: center;
+  padding: 0.8rem 0;
+}
+
+.form {
+display: flex;
+flex-direction: column;
+gap: 10px;
+max-width: 650px;
+width: 70vw;
+height: 100%;
+background-color: #fff;
+padding: 20px 30px 20px 20px;
+border-radius: 20px;
+position: relative;
+box-shadow: 0 0 5px #b9b9b96c;
+}
+
+.title {
+font-size: 28px;
+color: royalblue;
+font-weight: 600;
+letter-spacing: -1px;
+position: relative;
+display: flex;
+align-items: center;
+padding-left: 30px;
+}
+
+.title::before,.title::after {
+position: absolute;
+content: "";
+height: 16px;
+width: 16px;
+border-radius: 50%;
+left: 0px;
+background-color: royalblue;
+}
+
+.title::before {
+width: 18px;
+height: 18px;
+background-color: royalblue;
+}
+
+.title::after {
+width: 18px;
+height: 18px;
+animation: pulse 1s linear infinite;
+}
+
+.message, .signin {
+color: rgba(88, 87, 87, 0.822);
+font-size: 1.2rem;
+}
+
+.signin {
+text-align: center;
+}
+
+.signin a {
+color: royalblue;
+}
+
+.signin a:hover {
+text-decoration: underline royalblue;
+}
+
+.flex {
+display: flex;
+justify-content: space-between;
+align-items: center;
+align-content: center;
+width: 100%;
+gap: 6px;
+}
+
+.form .input
+{
+  font-size:20px;
+}
+
+.flex-file{
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+#file-input::file-selector-button {
+margin-right: 20px;
+border: none;
+background: #084cdf;
+padding: 10px 20px;
+border-radius: 10px;
+color: #fff;
+cursor: pointer;
+transition: background .2s ease-in-out;
+}
+
+#file-input::file-selector-button:hover {
+background: #0d45a5;
+}
+.flex-img{
+width: 100%;
+height: 200px;
+margin: 0 auto;
+outline: 2px solid #eee;
+}
+
+.flex-img img{
+width: 100%;
+height: 100%;
+}
+
+.form label {
+position: relative;
+}
+
+.form label .input {
+width: 100%;
+padding: 10px 10px 20px 10px;
+outline: 0;
+border: 1px solid rgba(105, 105, 105, 0.397);
+border-radius: 10px;
+}
+
+.show-selected-image {
+width: 100%;
+height: 200px;
+background-color: whitesmoke;
+}
+
+.form label .input:placeholder-shown + span {
+top: 15px;
+font-size: 1em;
+}
+
+.form label .input:focus + span,.form label .input:valid + span {
+top: 30px;
+font-size: 0.7em;
+font-weight: 600;
+}
+
+.form label .input:valid + span {
+color: green;
+}
+
+.submit {
+border: none;
+outline: none;
+background-color: royalblue;
+padding: 10px;
+border-radius: 10px;
+color: #fff;
+font-size: 1.1rem;
+transform: .3s ease;
+cursor: pointer;
+}
+
+.submit:hover {
+background-color: rgb(56, 90, 194);
+}
+
+@keyframes pulse {
+from {
+  transform: scale(0.9);
+  opacity: 1;
+}
+
+to {
+  transform: scale(1.8);
+  opacity: 0;
+}
+}

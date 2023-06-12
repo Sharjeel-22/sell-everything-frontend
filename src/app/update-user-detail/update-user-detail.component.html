@@ -1,6 +1,6 @@
 <div class="main-wrapper">
     <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
-        <p class="title">Register </p>
+        <p class="title">User Update </p>
         <div class="show-selected-image">
             <div class="flex-img">
                 <img [src]="user.imageURL" alt="">
@@ -20,7 +20,7 @@
         </div>
 
         <label>
-            <input  placeholder="" type="email" formControlName="email"  name="email" class="input">
+            <input placeholder="" type="email" formControlName="email" name="email" class="input">
             <span>Email</span>
         </label>
 

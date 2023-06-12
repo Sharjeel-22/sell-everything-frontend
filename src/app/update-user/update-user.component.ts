@@ -5,11 +5,11 @@ import { StorageServiceService } from '../storageService/storage-service.service
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 @Component({
-  selector: 'app-update-user-detail',
-  templateUrl: './update-user-detail.component.html',
-  styleUrls: ['./update-user-detail.component.css']
+  selector: 'app-update-user',
+  templateUrl: './update-user.component.html',
+  styleUrls: ['./update-user.component.css']
 })
-export class UpdateUserDetailComponent implements OnInit {
+export class UpdateUserComponent {
   public showImg: boolean = false;
   public ImgStore: string = '';
   public form!: FormGroup;
@@ -34,7 +34,6 @@ export class UpdateUserDetailComponent implements OnInit {
     this.user.firstName = data.firstName;
     this.user.lastName = data.lastName;
     this.user.imageURL = data.imageURL;
-    this.user.role = data.role;
     this.user.password = data.password;
     this.user.email = data.email;
     this.user.id = data._id;
@@ -44,8 +43,11 @@ export class UpdateUserDetailComponent implements OnInit {
       email: new FormControl(this.user.email, [Validators.required, Validators.email]),
       password: new FormControl(this.user.password ? this.user.password : '', [Validators.required, Validators.maxLength(14), Validators.minLength(8)]),
       imageURL: new FormControl(""),
-      role: new FormControl(this.user.role)
     })
+
+    if (data.imageURL) {
+      this.showImg = false;
+    }
   }
 
   public onSubmit(): void {
@@ -54,8 +56,7 @@ export class UpdateUserDetailComponent implements OnInit {
       firstName: this.form.value.firstName,
       lastName: this.form.value.lastName,
       email: this.form.value.email,
-      password: this.form.value.password,
-      role: this.form.value.role
+      password: this.form.value.password
     }
     this.adminService.editUser(userDetail).subscribe((res: any) => {
       Swal.fire({
@@ -71,5 +72,9 @@ export class UpdateUserDetailComponent implements OnInit {
       console.log("Check :: ", res);
     })
   }
-
+  public getImg(img: any) {
+    this.ImgStore = URL.createObjectURL(img.target.files[0]);
+    this.selectedFile = img.target.files[0];
+    this.showImg = true;
+  }
 }

@@ -22,10 +22,11 @@
             </div>
             <div class="button">
                 <div class="edit-button">
-                    <app-edit-button></app-edit-button>
-                    <span (click)="deleteAccount()" style="margin-left: 5px;"><app-delete-button></app-delete-button></span>
+                    <app-edit-button [user]="userData"></app-edit-button>
+                    <span (click)="deleteAccount()"
+                        style="margin-left: 5px;"><app-delete-button></app-delete-button></span>
                 </div>
-                
+
             </div>
         </div>
     </div>

@@ -17,69 +17,74 @@ import { AdminSectionComponent } from './admin-section/admin-section.component';
 import { UpdateResourceComponent } from './update-resource/update-resource.component';
 import { RoleGuard } from './role.guard';
 import { AdminGuard } from './admin.guard';
+import { UpdateUserComponent } from './update-user/update-user.component';
 
 const routes: Routes = [
   {
-    path:'',
-    redirectTo:'/user-login',
-    pathMatch:'full'
+    path: '',
+    redirectTo: '/user-login',
+    pathMatch: 'full'
   },
   {
-    path:'user-login',
-    component:UserLoginComponent
+    path: 'user-login',
+    component: UserLoginComponent
   },
   {
-    path:'user-registration',
-    component:UserRegistrationComponent
+    path: 'user-registration',
+    component: UserRegistrationComponent
   },
   {
-    path:'home',
-    component:HomeComponent,
-    canActivate:[AuthGuard],
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
     children: [
       {
-        path:'user-profile',
-        component:UserProfileComponent,
-        canActivate:[RoleGuard]
+        path: 'user-profile',
+        component: UserProfileComponent,
+        canActivate: [RoleGuard]
       },
       {
-        path:'add-new-user',
-        component:AddUserComponent,
+        path: 'add-new-user',
+        component: AddUserComponent,
       },
       {
-        path:'remove-user/:id',
-        component:DeleteUserComponent
+        path: 'remove-user/:id',
+        component: DeleteUserComponent
       },
       {
-        path:'update-user-detail/:id',
-        component:UpdateUserDetailComponent
+        path: 'update-user-detail/:id',
+        component: UpdateUserDetailComponent
       },
       {
-        path:'update-passowrd/:id',
-        component:UpdatePasswordComponent
+        path: 'update-user/:id',
+        component: UpdateUserComponent
       },
       {
-        path:'resource-section',
-        component:ResourceSectionComponent
+        path: 'update-passowrd/:id',
+        component: UpdatePasswordComponent
       },
       {
-        path:'add-new-resource',
-        component:AddNewResourceComponent
-      }, 
-      {
-        path:'admin-section',
-        component:AdminSectionComponent,
-        canActivate:[AdminGuard]
+        path: 'resource-section',
+        component: ResourceSectionComponent
       },
       {
-        path:'update-resource',
-        component:UpdateResourceComponent
+        path: 'add-new-resource',
+        component: AddNewResourceComponent
+      },
+      {
+        path: 'admin-section',
+        component: AdminSectionComponent,
+        canActivate: [AdminGuard]
+      },
+      {
+        path: 'update-resource',
+        component: UpdateResourceComponent
       }
     ]
   },
   {
-    path:'**',
-    component:NoMatchPageComponent
+    path: '**',
+    component: NoMatchPageComponent
   }
 ];
 

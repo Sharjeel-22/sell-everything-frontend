@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { StorageServiceService } from '../storageService/storage-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-button',
@@ -6,15 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-button.component.css']
 })
 export class EditButtonComponent implements OnInit {
+  @Input() user: any;
 
-  userData: any;
-
-  constructor() {
+  constructor(private storageService: StorageServiceService, private router: Router) {
 
   }
 
   ngOnInit(): void {
+  }
 
+  public onEditUser(): void {
+    this.storageService.localStorage("user-detail", this.user);
+    this.router.navigateByUrl("/home/update-user-detail/" + this.user._id)
   }
 
 }
