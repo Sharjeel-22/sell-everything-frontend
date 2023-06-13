@@ -30,7 +30,6 @@ export class ResourceItemListComponent implements OnInit {
       this.resources = [...res.results];
       const itemCount = this.showAllItems ? this.resources?.length : this.displayItemCount;
       this.resources = this.resources.slice(0, itemCount);
-      console.log("Check :: resource :: ", this.resources.length)
     })
     this.storageService.deleteLocalStorage("resource");
   }
@@ -47,7 +46,7 @@ export class ResourceItemListComponent implements OnInit {
   }
   public onEditResource(resource: any): void {
     this.storageService.localStorage("resource", resource);
-    this.router.navigateByUrl("/home/update-user-detail/" + resource._id);
+    this.router.navigateByUrl("/home/update-resource/" + resource._id);
   }
 
   public loadAllResources(): void {

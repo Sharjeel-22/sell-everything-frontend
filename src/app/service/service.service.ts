@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceService {
 
-  public changeStatus$: Subject<any> = new Subject();
+  public changeStatus$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   private BASE_URL = "https://sell-everything.herokuapp.com/api/";
 

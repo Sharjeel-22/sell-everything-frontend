@@ -82,7 +82,7 @@ const routes: Routes = [
         canActivate: [AdminGuard]
       },
       {
-        path: 'update-resource',
+        path: 'update-resource/:id',
         component: UpdateResourceComponent
       }
     ]

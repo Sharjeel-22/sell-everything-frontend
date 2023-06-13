@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ServiceService } from './service/service.service';
+import { StorageServiceService } from './storageService/storage-service.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,18 @@ import { ServiceService } from './service/service.service';
 })
 export class AppComponent {
   title = 'frontend';
-  constructor(){}
+  constructor(private service: ServiceService, private storageService: StorageServiceService) { }
 
+
+  ngOnInit(): void {
+    let role = this.storageService.getSession("userRole");
+    debugger
+    console.log("checkssss :: ",role)
+          if(!role){
+          this.service.changeStatus$.next(false);
+          }else {
+            this.service.changeStatus$.next(true);
+          }
+
+  }
 }

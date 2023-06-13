@@ -28,7 +28,6 @@ export class AdminSectionComponent implements OnInit{
       this.users = [...res.results];
       const itemCount = this.showAllItems ? this.users?.length : this.displayItemCount;
       this.users = this.users.slice(0,itemCount);
-      console.log("Check :: users :: ",this.users.length)
     })
     this.storageService.deleteLocalStorage("userDetail");
   }

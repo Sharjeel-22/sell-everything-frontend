@@ -30,7 +30,7 @@ export class UserLoginComponent implements OnInit {
   public onLogin(): void {
     const data = {
       email: this.form.value.email,
-      password: this.form.value.passowrd
+      password: this.form.value.password
     };
     this.loader = true;
     this.service.userLogin(data).subscribe((res: any) => {
@@ -49,12 +49,11 @@ export class UserLoginComponent implements OnInit {
           })
           this.loader = false;
           let role = this.storageService.getSession("userRole");
-          if(role == "admin"){
-            this.service.changeStatus$.next("admin");
-          }else{
-            this.service.changeStatus$.next("user");
+          if(!role){
+            this.service.changeStatus$.next(false);
+          }else {
+            this.service.changeStatus$.next(true);
           }
-          this.service.changeStatus$.next(true);
           this.router.navigateByUrl("/home/user-profile");
         }, 3000)
       }else {

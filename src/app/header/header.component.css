@@ -65,8 +65,8 @@ li a:hover{
 }
 
 .card {
-  width: 281px;
-  height: 350px;
+    width: 98%;
+    height: 368px;
   border-radius: 30px;
   background: #e0e0e0;
   box-shadow: 15px 15px 30px #6095ff,

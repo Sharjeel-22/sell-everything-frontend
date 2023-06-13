@@ -5,14 +5,14 @@
       <li><a routerLink="contact-us">Contact Us</a></li>
       <li>
         
-        <a routerLink="/home/admin-section" *ngIf="showAdmin">Admin</a>
+        <a routerLink="/home/admin-section" *ngIf="isAdmin">Admin</a>
       </li>
       <li>
-        <a routerLink="/home/user-profile" *ngIf="showUser"
+        <a routerLink="/home/user-profile" *ngIf="!isAdmin && isLogin"
           >User Profile</a
         >
       </li>
-      <li><a (click)="logOut()" style="cursor: pointer">Sign Out</a></li>
+      <li><a (click)="logOut()" style="cursor: pointer" *ngIf="isLogin">Sign Out</a></li>
     </ul>
   </div>
   <div class="navbar-content">
@@ -30,7 +30,7 @@
     </div>
     <div class="box-img">
       <div class="card">
-        <img src="./assets/Sharjeel.jpg" alt="">
+        <img src="./assets/boy.jpeg" alt="">
       </div>
     </div>
   </div>

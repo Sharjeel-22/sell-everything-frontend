@@ -10,9 +10,8 @@ import Swal from 'sweetalert2';
 })
 export class HeaderComponent implements OnInit{
   public showItems: boolean = false;
-  public permission: boolean = false;
-  public showAdmin: boolean = false;
-  public showUser: boolean = false;
+  public isAdmin: boolean = false;
+  public isLogin: boolean = false;
 
   constructor(private storageService:StorageServiceService,private service:ServiceService,private router:Router){}
 
@@ -29,29 +28,26 @@ export class HeaderComponent implements OnInit{
         showConfirmButton: false,
         timer: 1500
       })
+      this.cleareStorage();
       this.router.navigateByUrl("/user-login");
       this.showItems = false;
     }, 2000);
   }
 
   public showSpacificItems():void {
-    let role = this.storageService.getSession("userRole");
-    if(!role) {
-      this.showAdmin = false;
-      this.showUser = false;
-    }
-    this.service.changeStatus$.subscribe((res:boolean) => {
-      this.showItems = res;
-    })
       this.service.changeStatus$.subscribe((res:any) => {
-        if(res == "admin") {
-          this.showAdmin = true;
-          this.showUser = false;
-        }
-        if(res == "user") {
-          this.showUser = true;
-          this.showAdmin = false;
+        console.log("ssss",res)
+        if(res) {
+          let role = this.storageService.getSession("userRole");
+          this.isAdmin = role == "admin" ? true : false;
+          this.isLogin = true;
+        }else {
+          this.isLogin = false;
         }
       })
+  }
+  public cleareStorage():void {
+    this.isLogin = false;
+    this.isAdmin = false;
   }
 }
