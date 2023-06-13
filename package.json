@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "npm i && npm start",
+    "start": "npm i && npm prod",
     "prod": "ng serve --proxy-config=proxy.conf.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
