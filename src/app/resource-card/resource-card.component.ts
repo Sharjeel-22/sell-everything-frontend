@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./resource-card.component.css']
 })
 export class ResourceCardComponent implements OnInit{
-  public resources:any;
+  public resources:any[]=[];
   public postId="";
   public comment:any;
   public userId:any;
@@ -19,6 +19,8 @@ export class ResourceCardComponent implements OnInit{
   public tempLoader:boolean[] = [false,false];
   public triggerTempField:boolean[]=[false,false];
   public inputValue:any;
+  public searchText:any;
+  public noResultsFound: boolean = false;
 
   constructor(
     private resourceService:ResourceService,

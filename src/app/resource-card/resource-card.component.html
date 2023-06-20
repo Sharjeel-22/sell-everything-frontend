@@ -1,52 +1,62 @@
 <div class="card">
-  <ng-container *ngFor="let re of resources">
-    <div class="delete-post" *ngIf="re.userId == userId || userRole === 'admin'">
-      <button class="dots-button" (click)="openModal(re._id)">
-        <span class="dots-text">...</span>
-      </button>
-    </div>
-    <div class="wrapper">
-      <div>
-          <img [src]="re?.imageURL" class="image" alt="">
-      </div>
-      <div class="content">
-        <a href="#">
-          <span class="title">
-            {{re.title}}
-          </span>
-        </a>
-  
-        <p class="desc">
-          {{re.description}}
-        </p>
-        <ng-container *ngFor="let comment of re.comments;let i = index">
-          <div class="comments-list">
-            <div class="delete-post" *ngIf="comment.userId == userId || userRole === 'admin'">
-              <button class="dots-button" (click)="openModalForComments(comment._id,re._id,comment.comment,i)">
-                <span class="dots-text">...</span>
-              </button>
-            </div>
-            <img [src]="comment.userImageURL" width="60" height="60" alt="" />
-            <span><h1 style="display: inline">{{comment.userName}}</h1></span>
-            <p>
-              {{comment.comment}}
-            </p>
-          </div>
-          <!-- <div class="comment-loader" *ngIf="tempLoader[re._id]">
-            <app-comment-loader></app-comment-loader>
-          </div> -->
-        </ng-container>
-        <div class="comment-loader" *ngIf="tempLoader[re._id]">
-          <app-comment-loader></app-comment-loader>
-        </div>
-      </div>
-      <div class="cardss coupons">
-        <form class="form">
-            <input type="text" #comment placeholder="Add comment..." class="input_field">
-            <button (click)="postComment(re._id,comment)">Post Comments</button>
-        </form>
-    </div>
-    </div>
-  </ng-container>
-
+  <div class="input-container">
+    <input placeholder="Search..." [(ngModel)]="searchText" class="input-field" type="text">
   </div>
+  <ng-container *ngIf="(resources | search:searchText).length > 0; else noResultsTemplate">
+    <ng-container *ngFor="let re of resources | search:searchText">
+      <div class="delete-post" *ngIf="re.userId == userId || userRole === 'admin'">
+        <button class="dots-button" (click)="openModal(re._id)">
+          <span class="dots-text">...</span>
+        </button>
+      </div>
+      <div class="wrapper">
+        <div>
+            <img [src]="re?.imageURL" class="image" alt="">
+        </div>
+        <div class="content">
+          <a href="#">
+            <span class="title">
+              {{re.title}}
+            </span>
+          </a>
+    
+          <p class="desc">
+            {{re.description}}
+          </p>
+          <ng-container *ngFor="let comment of re.comments;let i = index">
+            <div class="comments-list">
+              <div class="delete-post" *ngIf="comment.userId == userId || userRole === 'admin'">
+                <button class="dots-button" (click)="openModalForComments(comment._id,re._id,comment.comment,i)">
+                  <span class="dots-text">...</span>
+                </button>
+              </div>
+              <img [src]="comment.userImageURL" width="60" height="60" alt="" />
+              <span><h1 style="display: inline">{{comment.userName}}</h1></span>
+              <p>
+                {{comment.comment}}
+              </p>
+            </div>
+            <!-- <div class="comment-loader" *ngIf="tempLoader[re._id]">
+              <app-comment-loader></app-comment-loader>
+            </div> -->
+          </ng-container>
+          <div class="comment-loader" *ngIf="tempLoader[re._id]">
+            <app-comment-loader></app-comment-loader>
+          </div>
+        </div>
+        <div class="cardss coupons">
+          <form class="form">
+              <input type="text" #comment placeholder="Add comment..." class="input_field">
+              <button (click)="postComment(re._id,comment)">Post Comments</button>
+          </form>
+      </div>
+      </div>
+    </ng-container>
+  </ng-container>
+  <ng-template #noResultsTemplate>
+    <p class="no-match-message">
+      No Data Available According To Your Search...
+    </p>
+  </ng-template>
+  </div>
+  

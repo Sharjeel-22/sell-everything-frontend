@@ -8,26 +8,36 @@
           </tr>
         </thead>
         <tbody>
+          <div class="input-container">
+            <input placeholder="Enter text" [(ngModel)]="searchText" class="input-field" type="text">
+          </div>
           <ng-container *ngIf="resources.length else loading">
-            <ng-container *ngFor="let resource of resources; let i = index">
-              <tr>
-                <td>
-                  <img [src]="resource.imageURL" height="30px" width="30px" alt="" class="image" />
-                  <b style="margin-left: 10px">{{
-                    resource.title
-                    }}</b>
-                  <div class="action-icon">
-                    <span class="icon delete-icon" (click)="deleteResouce(resource._id, i)">
-                      <span class="material-symbols-outlined"> delete </span>
-                    </span>
-                    <span class="icon update-icon" (click)="onEditResource(resource)">
-                      <span class="material-symbols-outlined"> edit </span>
-                    </span>
-                  </div>
-                </td>
-              </tr>
+            <ng-container *ngIf="(resources | search:searchText).length > 0; else noResultsTemplate">
+              <ng-container *ngFor="let resource of resources | search:searchText; let i = index">
+                <tr>
+                  <td>
+                    <img [src]="resource.imageURL" height="30px" width="30px" alt="" class="image" />
+                    <b style="margin-left: 10px">{{
+                      resource.title
+                      }}</b>
+                    <div class="action-icon">
+                      <span class="icon delete-icon" (click)="deleteResouce(resource._id, i)">
+                        <span class="material-symbols-outlined"> delete </span>
+                      </span>
+                      <span class="icon update-icon" (click)="onEditResource(resource)">
+                        <span class="material-symbols-outlined"> edit </span>
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </ng-container>
             </ng-container>
           </ng-container>
+          <ng-template #noResultsTemplate>
+            <p class="no-match-message">
+              No Data Available According To Your Search...
+            </p>
+          </ng-template>
           <ng-template #loading>Loading Data .....</ng-template>
         </tbody>
         <div class="load-item-wrapper">

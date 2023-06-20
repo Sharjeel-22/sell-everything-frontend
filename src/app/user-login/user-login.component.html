@@ -7,16 +7,17 @@
             <p class="title">Login</p>
             <div class="input-group">
                 <label for="username">Username</label>
-                <input type="email" formControlName="email" name="username" id="username" placeholder="email">
+                <input type="email" formControlName="email" name="username" id="username" placeholder="email" required>
             </div>
             <div class="input-group">
                 <label for="password">Password</label>
-                <input type="password" formControlName="password" name="password" id="password" placeholder="">
+                <input type="password" formControlName="password" name="password" id="password" placeholder="" required>
                 <div class="forgot">
                     <a rel="noopener noreferrer" [routerLink]="['/home/update-passowrd/:1']">Forgot Password ?</a>
                 </div>
             </div>
-            <button class="sign">Sign in</button>
+            <button class="sign" [disabled]="!form.valid">Sign in</button>
+            
         </form>
         <div class="social-message">
             <div class="line"></div>

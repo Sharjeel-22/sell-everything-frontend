@@ -12,6 +12,7 @@ export class AdminSectionComponent implements OnInit{
   public users:any[]=[];
   public displayItemCount = 5;
   public showAllItems = false;
+  public searchText:any;
 
   constructor(
     private adminService:AdminService,

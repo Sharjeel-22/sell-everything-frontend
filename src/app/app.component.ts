@@ -14,8 +14,6 @@ export class AppComponent {
 
   ngOnInit(): void {
     let role = this.storageService.getSession("userRole");
-    debugger
-    console.log("checkssss :: ",role)
           if(!role){
           this.service.changeStatus$.next(false);
           }else {
