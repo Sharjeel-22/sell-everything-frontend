@@ -10,9 +10,10 @@ import { ResourceService } from '../resourceService/resource.service';
   styleUrls: ['./resource-item-list.component.css']
 })
 export class ResourceItemListComponent implements OnInit {
-  public resources: any[] = [];
+  public resources: any[]=[];
   public displayItemCount = 5;
   public showAllItems = false;
+  public searchText:any;
 
   constructor(
     private resouceService: ResourceService,
@@ -28,6 +29,7 @@ export class ResourceItemListComponent implements OnInit {
     let token = this.storageService.getSession("token");
     this.resouceService.getAllResouces(token).subscribe((res: any) => {
       this.resources = [...res.results];
+      console.log("Check :: ",this.resources);
       const itemCount = this.showAllItems ? this.resources?.length : this.displayItemCount;
       this.resources = this.resources.slice(0, itemCount);
     })

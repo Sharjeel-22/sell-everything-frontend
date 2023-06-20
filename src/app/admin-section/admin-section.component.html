@@ -8,33 +8,43 @@
           </tr>
         </thead>
         <tbody>
+          <div class="input-container">
+            <input placeholder="Enter text" [(ngModel)]="searchText" class="input-field" type="text">
+          </div>
           <ng-container *ngIf="users.length else loading">
-            <ng-container *ngFor="let user of users; let i = index">
-              <tr>
-                <td>
-                  <img
-                    [src]="user.imageURL"
-                    height="30px"
-                    width="30px"
-                    alt=""
-                    class="image"
-                  />
-                  <b style="margin-left: 10px">{{
-                    user.firstName + ' ' + user.lastName
-                  }}</b>
-                  <div class="action-icon">
-                    <span class="icon delete-icon" (click)="deleteUser(user._id, i)">
-                      <span class="material-symbols-outlined"> delete </span>
-                    </span>
-                    <span class="icon update-icon" (click)="onEditUser(user)">
-                      <span class="material-symbols-outlined"> edit </span>
-                    </span>
-                  </div>
-                </td>
-              </tr>
-              
+            <ng-container *ngIf="(users | userFilter:searchText).length > 0; else noResultsTemplate">
+              <ng-container *ngFor="let user of users | userFilter:searchText; let i = index">
+                <tr>
+                  <td>
+                    <img
+                      [src]="user.imageURL"
+                      height="30px"
+                      width="30px"
+                      alt=""
+                      class="image"
+                    />
+                    <b style="margin-left: 10px">{{
+                      user.firstName + ' ' + user.lastName
+                    }}</b>
+                    <div class="action-icon">
+                      <span class="icon delete-icon" (click)="deleteUser(user._id, i)">
+                        <span class="material-symbols-outlined"> delete </span>
+                      </span>
+                      <span class="icon update-icon" (click)="onEditUser(user)">
+                        <span class="material-symbols-outlined"> edit </span>
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+                
+              </ng-container>
             </ng-container>
           </ng-container>
+          <ng-template #noResultsTemplate>
+            <p class="no-match-message">
+              No Data Available According To Your Search...
+            </p>
+          </ng-template>
           <ng-template #loading>Loading Data .....</ng-template>
         </tbody>
         <div class="load-item-wrapper">

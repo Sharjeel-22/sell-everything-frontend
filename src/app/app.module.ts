@@ -36,6 +36,8 @@ import { ResourceItemListComponent } from './resource-item-list/resource-item-li
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { LogoutButtonComponent } from './logout-button/logout-button.component';
+import { SearchPipe } from './pipe/search.pipe';
+import { UserFilterPipe } from './pipe/user-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,9 @@ import { LogoutButtonComponent } from './logout-button/logout-button.component';
     ResourceItemListComponent,
     UpdateUserComponent,
     ContactUsComponent,
-    LogoutButtonComponent
+    LogoutButtonComponent,
+    SearchPipe,
+    UserFilterPipe
   ],
   imports: [
     BrowserModule,

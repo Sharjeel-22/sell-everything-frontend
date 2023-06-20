@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ResourceService {
   private BASE_URL = "https://sell-everything.herokuapp.com/api/";
+  // private BASE_URL = "http://localhost:5000/api/";
   constructor(private http:HttpClient) { }
 
 
