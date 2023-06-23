@@ -9,8 +9,8 @@ export class ServiceService {
 
   public changeStatus$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  private BASE_URL = "https://sell-everything.herokuapp.com/api/";
-  // private BASE_URL = "http://localhost:5000/api/";
+  // private BASE_URL = "https://sell-everything.herokuapp.com/api/";
+  private BASE_URL = "http://localhost:5000/api/";
 
   constructor(private http: HttpClient) { }
 
