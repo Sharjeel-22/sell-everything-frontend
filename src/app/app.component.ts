@@ -19,6 +19,5 @@ export class AppComponent {
           }else {
             this.service.changeStatus$.next(true);
           }
-
   }
 }
