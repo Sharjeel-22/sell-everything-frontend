@@ -38,8 +38,7 @@ export class ResourceCardComponent implements OnInit{
     this.userRole = this.storageService.getSession("userRole");
   }
   public getAllResources():void {
-    let token = this.storageService.getSession("token");
-    this.resourceService.getAllResouces(token).subscribe((res:any) => {
+    this.resourceService.getAllResouces().subscribe((res:any) => {
       this.resources = [...res.results]
     })
     setTimeout(() => {
@@ -58,7 +57,7 @@ export class ResourceCardComponent implements OnInit{
         comment: comment.value,
         id:id
       }
-      this.resourceService.postComment(user,token).subscribe((res:any) => {
+      this.resourceService.postComment(user).subscribe((res:any) => {
         if(!res.hasError) {
           setTimeout(() => {
             this.getAllResources();
@@ -115,7 +114,7 @@ export class ResourceCardComponent implements OnInit{
           postId:postId,
           id: id
         }
-        this.resourceService.deleteComment(data,token).subscribe((res:any) => {
+        this.resourceService.deleteComment(data).subscribe((res:any) => {
           if(res.hasError == false) {
             Swal.fire(
               'Deleted!',
@@ -131,8 +130,7 @@ export class ResourceCardComponent implements OnInit{
     })
   }
   public onEditComment(data:any):void {
-    let token = this.storageService.getSession("token");
-    this.resourceService.updateResourceComment(data,token).subscribe((res:any) => {
+    this.resourceService.updateResourceComment(data).subscribe((res:any) => {
       if(res.hasError == false) {
         this.getAllResources();
       }
@@ -160,8 +158,7 @@ export class ResourceCardComponent implements OnInit{
     }).then((result) => {
       if (result.isConfirmed) {
         let resource = this.storageService.getLocalStorage("currentResource");
-        let token = this.storageService.getSession("token");
-        this.resourceService.deleteResource(resource._id,token).subscribe((res:any) => {
+        this.resourceService.deleteResource(resource._id).subscribe((res:any) => {
           if(res.hasError == false) {
             Swal.fire(
               'Deleted!',

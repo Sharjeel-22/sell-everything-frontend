@@ -40,8 +40,7 @@ export class AddNewResourceComponent implements OnInit{
     let formData = new FormData();
     formData.append("imageURL",this.selectedFile);
     formData.append("resourceDetail",JSON.stringify(resouceDetail));
-    let token = this.storageService.getSession("token");
-    this.servie.addResouce(formData,token).subscribe((res:any) => {
+    this.servie.addResouce(formData).subscribe((res:any) => {
       console.log("Check Response :: ",res);
       if(res.hasError == false) {
         Swal.fire({
