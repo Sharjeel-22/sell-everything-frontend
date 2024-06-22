@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddUserComponent } from './add-user/add-user.component';
@@ -38,6 +38,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { LogoutButtonComponent } from './logout-button/logout-button.component';
 import { SearchPipe } from './pipe/search.pipe';
 import { UserFilterPipe } from './pipe/user-filter.pipe';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,11 @@ import { UserFilterPipe } from './pipe/user-filter.pipe';
     HttpClientModule,
     MatPaginatorModule
   ],
-  providers: [AuthGuard, RoleGuard, AdminGuard],
+  providers: [AuthGuard, RoleGuard, AdminGuard,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

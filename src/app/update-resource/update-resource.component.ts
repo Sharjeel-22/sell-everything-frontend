@@ -44,8 +44,7 @@ export class UpdateResourceComponent {
       description: this.form.value.description || this.resource.description,
       imageURL: this.resource.imageURL
     }
-    let token = this.storageService.getSession("token");
-    this.servie.updateResource(data,token).subscribe((res:any) => {
+    this.servie.updateResource(data).subscribe((res:any) => {
       if(res.hasError == false) {
         Swal.fire({
           position: 'top-end',

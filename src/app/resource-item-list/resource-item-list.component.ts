@@ -26,8 +26,7 @@ export class ResourceItemListComponent implements OnInit {
   }
 
   public getAllResource(): void {
-    let token = this.storageService.getSession("token");
-    this.resouceService.getAllResouces(token).subscribe((res: any) => {
+    this.resouceService.getAllResouces().subscribe((res: any) => {
       this.resources = [...res.results];
       console.log("Check :: ",this.resources);
       const itemCount = this.showAllItems ? this.resources?.length : this.displayItemCount;
@@ -38,8 +37,7 @@ export class ResourceItemListComponent implements OnInit {
   public deleteResouce(userId: any, index: number): void {
     this.resources.forEach((res: any) => {
       if (res._id === userId) {
-        let token = this.storageService.getSession("token");
-        this.resouceService.deleteResource(res._id, token).subscribe((res: any) => {
+        this.resouceService.deleteResource(res._id).subscribe((res: any) => {
           console.log("Check :: ", res);
         })
       }

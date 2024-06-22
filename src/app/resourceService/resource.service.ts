@@ -6,46 +6,32 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ResourceService {
-  private BASE_URL = "https://sell-everything.herokuapp.com/api/";
-  // private BASE_URL = "http://localhost:5000/api/";
+  // private BASE_URL = "https://sell-everything.herokuapp.com/api/";
+  private BASE_URL = "http://localhost:5000/api/";
   constructor(private http:HttpClient) { }
 
 
-  public addResouce(data:any,token:string):Observable<any>{
-    let headers = new HttpHeaders()
-    .set('Authorization', `Bearer ${token}`);
-    return this.http.post(`${this.BASE_URL}resource`,data,{headers});
+  public addResouce(data:any):Observable<any>{
+    return this.http.post(`${this.BASE_URL}resource`,data);
   }
 
-  public getAllResouces(token:string):Observable<any>{
-    let headers = new HttpHeaders()
-    .set('Authorization', `Bearer ${token}`);
-    return this.http.get(`${this.BASE_URL}resources`,{headers});
+  public getAllResouces():Observable<any>{
+    return this.http.get(`${this.BASE_URL}resource`);
   }
 
-  public postComment(comment:any,token:string):Observable<any>{
-    let headers = new HttpHeaders()
-    .set('Authorization', `Bearer ${token}`);
-    return this.http.post(`${this.BASE_URL}resource/comment`,comment,{headers});
+  public postComment(comment:any):Observable<any>{
+    return this.http.post(`${this.BASE_URL}resource/comment`,comment);
   }
-  public updateResource(data:any,token:string):Observable<any>{
-    let headers = new HttpHeaders()
-    .set('Authorization', `Bearer ${token}`);
-    return this.http.put(`${this.BASE_URL}resource/${data.id}`,data,{headers});
+  public updateResource(data:any):Observable<any>{
+    return this.http.put(`${this.BASE_URL}resource/${data.id}`,data);
   }
-  public deleteResource(id:string,token:string):Observable<any>{
-    let headers = new HttpHeaders()
-    .set('Authorization', `Bearer ${token}`);
-    return this.http.delete(`${this.BASE_URL}resource/${id}`,{headers});
+  public deleteResource(id:string):Observable<any>{
+    return this.http.delete(`${this.BASE_URL}resource/${id}`);
   }
-  public deleteComment(data:{ postId: string; id: string; },token:string):Observable<any>{
-    let headers = new HttpHeaders()
-    .set('Authorization', `Bearer ${token}`);
-    return this.http.put(`${this.BASE_URL}resource/comment/update/${data.id}`,data,{headers});
+  public deleteComment(data:{ postId: string; id: string; }):Observable<any>{
+    return this.http.put(`${this.BASE_URL}resource/comment/update/${data.id}`,data);
   }
-  public updateResourceComment(data:any,token:any):Observable<any> {
-    let headers = new HttpHeaders()
-    .set('Authorization', `Bearer ${token}`);
-    return this.http.put(`${this.BASE_URL}resource/comment/${data.postId}`,data,{headers});
+  public updateResourceComment(data:any):Observable<any> {
+    return this.http.put(`${this.BASE_URL}resource/comment/${data.postId}`,data);
   }
 }
