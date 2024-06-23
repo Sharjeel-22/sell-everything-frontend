@@ -1,18 +1,36 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpEventType, HttpHeaders } from '@angular/common/http';
+import { Injectable, signal, WritableSignal } from '@angular/core';
+import { catchError, map, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResourceService {
+  public progressProvider:WritableSignal<number> = signal<number>(0);
   // private BASE_URL = "https://sell-everything.herokuapp.com/api/";
   private BASE_URL = "http://localhost:5000/api/";
   constructor(private http:HttpClient) { }
 
 
-  public addResouce(data:any):Observable<any>{
-    return this.http.post(`${this.BASE_URL}resource`,data);
+  public addResource(data: any): Observable<any> {
+    return this.http.post(`${this.BASE_URL}resource`, data, {
+      reportProgress: true,
+      observe: 'events'
+    }).pipe(
+      map((event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progressProvider.set(Math.round((100 / event.total) * event.loaded));
+        } else if (event.type === HttpEventType.Response) {
+          this.progressProvider.set(0);
+          return event.body;
+        }
+      }),
+      catchError((err: any) => {
+        this.progressProvider.set(0);
+        alert(err.message);
+        return throwError(err.message);
+      })
+    );
   }
 
   public getAllResouces():Observable<any>{

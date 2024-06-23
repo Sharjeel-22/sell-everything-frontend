@@ -10,6 +10,9 @@
             <input formControlName="imageURL" name="imageURL" placeholder="" accept="image/png, image/jpeg, image/jpg " (change)="getImg($event)" #img
                 type="file" id="file-input" class="input">
         </div>
+        <div class="progress" *ngIf="progressBar()">
+            <div class="progress-bar" [style.width]="progressBar() + '%'">{{progressBar()}}%</div>
+        </div>
         <label>
             <input formControlName="title" name="title" placeholder="Resource Title" type="text" class="input">
             <span><b>Title</b></span>

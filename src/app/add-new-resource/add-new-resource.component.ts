@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, WritableSignal, effect, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { StorageServiceService } from '../storageService/storage-service.service';
 import { Router } from '@angular/router';
@@ -15,9 +15,13 @@ export class AddNewResourceComponent implements OnInit{
   public ImgStore: string = '';
   public selectedFile:any;
   public form!:FormGroup;
+  public progressBar:WritableSignal<number>=signal<number>(0);
 
-  constructor(private servie:ResourceService,private storageService:StorageServiceService,private router:Router){}
-
+  constructor(private service:ResourceService,private storageService:StorageServiceService,private router:Router){
+    effect(() => {
+      this.progressBar.set(this.service.progressProvider());
+    },{allowSignalWrites:true})
+  }
   ngOnInit(): void {
     this.formValidation();
   }
@@ -37,22 +41,27 @@ export class AddNewResourceComponent implements OnInit{
       description: this.form.value.description,
       userId: currentUserId
     }
+    this.service.progressProvider.set(1);
     let formData = new FormData();
     formData.append("imageURL",this.selectedFile);
     formData.append("resourceDetail",JSON.stringify(resouceDetail));
-    this.servie.addResouce(formData).subscribe((res:any) => {
-      console.log("Check Response :: ",res);
-      if(res.hasError == false) {
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Resource Add Successfully...',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        this.router.navigateByUrl("/home/resource-section");
+    this.service.addResource(formData).subscribe(
+      (res: any) => {
+        if (res && res.hasError === false) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Resource Add Successfully...',
+            showConfirmButton: false,
+            timer: 1500
+          });
+          this.router.navigateByUrl("/home/resource-section");
+        }
+      },
+      (err: any) => {
+        console.error("Error occurred: ", err);
       }
-    })
+    );
   }
   public getImg(img: any) {
     this.ImgStore = URL.createObjectURL(img.target.files[0]);
