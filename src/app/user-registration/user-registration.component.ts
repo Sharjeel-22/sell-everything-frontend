@@ -1,14 +1,18 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ServiceService } from '../service/service.service';
 import { User } from '../model/User';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { CommonModule, NgIf } from '@angular/common';
 
 
 @Component({
   selector: 'app-user-registration',
   templateUrl: './user-registration.component.html',
+  standalone:true,
+  imports:[NgIf,ReactiveFormsModule,RouterLink],
+  changeDetection:ChangeDetectionStrategy.OnPush,
   styleUrls: ['./user-registration.component.css']
 })
 export class UserRegistrationComponent implements OnInit {

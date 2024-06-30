@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AdminService } from '../adminService/admin.service';
 import { StorageServiceService } from '../storageService/storage-service.service';
 import Swal from 'sweetalert2';
@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-update-user',
   templateUrl: './update-user.component.html',
+  imports:[ReactiveFormsModule],
+  standalone:true,
+  changeDetection:ChangeDetectionStrategy.OnPush,
   styleUrls: ['./update-user.component.css']
 })
 export class UpdateUserComponent {

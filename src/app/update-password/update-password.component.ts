@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { StorageServiceService } from '../storageService/storage-service.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { matchpassword } from './confirmpasswordvalidators';
 import { Router } from '@angular/router';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-update-password',
   templateUrl: './update-password.component.html',
+  imports:[ReactiveFormsModule,NgIf],
+  standalone:true,
+  changeDetection:ChangeDetectionStrategy.OnPush,
   styleUrls: ['./update-password.component.css']
 })
 export class UpdatePasswordComponent implements OnInit {

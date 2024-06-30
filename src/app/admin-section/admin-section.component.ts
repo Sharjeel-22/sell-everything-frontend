@@ -1,11 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AdminService } from '../adminService/admin.service';
 import { StorageServiceService } from '../storageService/storage-service.service';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
+import { ResourceItemListComponent } from '../resource-item-list/resource-item-list.component';
+import { UserFilterPipe } from '../pipe/user-filter.pipe';
 
 @Component({
   selector: 'app-admin-section',
   templateUrl: './admin-section.component.html',
+  imports:[FormsModule,NgIf,NgFor,ResourceItemListComponent,UserFilterPipe],
+  standalone:true,
+  changeDetection:ChangeDetectionStrategy.OnPush,
   styleUrls: ['./admin-section.component.css']
 })
 export class AdminSectionComponent implements OnInit{

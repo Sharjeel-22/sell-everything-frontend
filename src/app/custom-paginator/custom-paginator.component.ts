@@ -1,8 +1,12 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-custom-paginator',
   templateUrl: './custom-paginator.component.html',
+  imports:[MatPaginatorModule],
+  standalone:true,
+  changeDetection:ChangeDetectionStrategy.OnPush,
   styleUrls: ['./custom-paginator.component.css']
 })
 export class CustomPaginatorComponent {

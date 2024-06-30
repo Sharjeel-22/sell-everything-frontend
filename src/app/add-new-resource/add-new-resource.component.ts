@@ -1,13 +1,17 @@
-import { Component, OnInit, WritableSignal, effect, signal } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, OnInit, WritableSignal, effect, signal } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StorageServiceService } from '../storageService/storage-service.service';
 import { Router } from '@angular/router';
 import { ResourceService } from '../resourceService/resource.service';
 import Swal from 'sweetalert2';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-add-new-resource',
   templateUrl: './add-new-resource.component.html',
+  imports:[NgIf,ReactiveFormsModule],
+  standalone:true,
+  changeDetection:ChangeDetectionStrategy.OnPush,
   styleUrls: ['./add-new-resource.component.css']
 })
 export class AddNewResourceComponent implements OnInit{

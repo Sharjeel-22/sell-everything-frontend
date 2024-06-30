@@ -1,13 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, Pipe } from '@angular/core';
 import { StorageServiceService } from '../storageService/storage-service.service';
 import { Router } from '@angular/router';
 import { ServiceService } from '../service/service.service';
 import Swal from 'sweetalert2';
+import { DeleteButtonComponent } from '../delete-button/delete-button.component';
+import { NgIf, UpperCasePipe } from '@angular/common';
+import { EditButtonComponent } from '../edit-button/edit-button.component';
+import { LogoutButtonComponent } from '../logout-button/logout-button.component';
+import { LogoutLoaderComponent } from '../logout-loader/logout-loader.component';
 
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
+  standalone:true,
+  imports:[DeleteButtonComponent,NgIf,EditButtonComponent,LogoutButtonComponent,LogoutLoaderComponent,UpperCasePipe],
+  changeDetection:ChangeDetectionStrategy.OnPush,
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {

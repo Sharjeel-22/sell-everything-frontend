@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { ApplicationRef, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddUserComponent } from './add-user/add-user.component';
@@ -46,57 +46,17 @@ import { UserRevenueComponent } from './user-sales-dashboard/dashboard/user-reve
 import { ItemSellingRatioComponent } from './user-sales-dashboard/dashboard/item-selling-ratio/item-selling-ratio.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AddUserComponent,
-    DeleteUserComponent,
-    UpdateUserDetailComponent,
-    UpdatePasswordComponent,
-    UserRegistrationComponent,
-    UserLoginComponent,
-    HeaderComponent,
-    FooterComponent,
-    HomeComponent,
-    NoMatchPageComponent,
-    UserProfileComponent,
-    ResourceSectionComponent,
-    PostCommentComponent,
-    ResourceCardComponent,
-    AddNewResourceButtonComponent,
-    AddNewResourceComponent,
-    LoaderComponent,
-    EditButtonComponent,
-    LogoutLoaderComponent,
-    AdminSectionComponent,
-    UpdateResourceComponent,
-    CommentLoaderComponent,
-    DeleteButtonComponent,
-    CustomPaginatorComponent,
-    ResourceItemListComponent,
-    UpdateUserComponent,
-    ContactUsComponent,
-    LogoutButtonComponent,
-    SearchPipe,
-    UserFilterPipe,
-    DashboardComponent,
-    AnnuallSalesComponent,
-    SoldItemsPercentageComponent,
-    UserRevenueComponent,
-    ItemSellingRatioComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    MatPaginatorModule
-  ],
-  providers: [AuthGuard, RoleGuard, AdminGuard,{
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true
-  }],
-  bootstrap: [AppComponent]
+    imports:[BrowserModule,AppRoutingModule],
+    providers: [AuthGuard, RoleGuard, AdminGuard, {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterceptor,
+        multi: true
+    }, provideHttpClient(withInterceptorsFromDi())]
 })
-export class AppModule { }
+export class AppModule { 
+    constructor(private appRef: ApplicationRef) {}
+
+  ngDoBootstrap() {
+    this.appRef.bootstrap(AppComponent);
+  }
+}

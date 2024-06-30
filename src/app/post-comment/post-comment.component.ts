@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ResourceService } from '../resourceService/resource.service';
 import { StorageServiceService } from '../storageService/storage-service.service';
 import { ServiceService } from '../service/service.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-post-comment',
   templateUrl: './post-comment.component.html',
+  imports:[FormsModule],
+  standalone:true,
+  changeDetection:ChangeDetectionStrategy.OnPush,
   styleUrls: ['./post-comment.component.css']
 })
 export class PostCommentComponent implements OnInit{

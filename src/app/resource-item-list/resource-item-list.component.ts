@@ -1,12 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AdminService } from '../adminService/admin.service';
 import { StorageServiceService } from '../storageService/storage-service.service';
 import { Router } from '@angular/router';
 import { ResourceService } from '../resourceService/resource.service';
+import { FormsModule } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
+import { SearchPipe } from '../pipe/search.pipe';
 
 @Component({
   selector: 'app-resource-item-list',
   templateUrl: './resource-item-list.component.html',
+  imports:[FormsModule,NgIf,NgFor,SearchPipe],
+  standalone:true,
+  changeDetection:ChangeDetectionStrategy.OnPush,
   styleUrls: ['./resource-item-list.component.css']
 })
 export class ResourceItemListComponent implements OnInit {

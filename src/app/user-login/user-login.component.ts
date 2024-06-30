@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ServiceService } from '../service/service.service';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { StorageServiceService } from '../storageService/storage-service.service';
+import { NgIf } from '@angular/common';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
+  imports:[NgIf,LoaderComponent,RouterLink,ReactiveFormsModule],
+  standalone:true,
+  changeDetection:ChangeDetectionStrategy.OnPush,
   styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent implements OnInit {

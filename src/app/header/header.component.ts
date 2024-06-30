@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { StorageServiceService } from '../storageService/storage-service.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ServiceService } from '../service/service.service';
 import Swal from 'sweetalert2';
+import { NgIf } from '@angular/common';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
+  imports:[NgIf,RouterLink],
+  standalone:true,
+  changeDetection:ChangeDetectionStrategy.OnPush,
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit{

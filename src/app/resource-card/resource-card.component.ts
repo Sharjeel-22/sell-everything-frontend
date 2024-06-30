@@ -1,13 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, Pipe } from '@angular/core';
 import { ResourceService } from '../resourceService/resource.service';
 import { StorageServiceService } from '../storageService/storage-service.service';
 import { ServiceService } from '../service/service.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { NgFor, NgIf } from '@angular/common';
+import { CommentLoaderComponent } from '../comment-loader/comment-loader.component';
+import { FormsModule } from '@angular/forms';
+import { SearchPipe } from '../pipe/search.pipe';
 
 @Component({
   selector: 'app-resource-card',
   templateUrl: './resource-card.component.html',
+  imports:[FormsModule,NgIf,NgFor,CommentLoaderComponent,SearchPipe],
+  standalone:true,
+  changeDetection:ChangeDetectionStrategy.OnPush,
   styleUrls: ['./resource-card.component.css']
 })
 export class ResourceCardComponent implements OnInit{
