@@ -39,6 +39,11 @@ import { LogoutButtonComponent } from './logout-button/logout-button.component';
 import { SearchPipe } from './pipe/search.pipe';
 import { UserFilterPipe } from './pipe/user-filter.pipe';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { DashboardComponent } from './user-sales-dashboard/dashboard/dashboard/dashboard.component';
+import { AnnuallSalesComponent } from './user-sales-dashboard/dashboard/annuall-sales/annuall-sales.component';
+import { SoldItemsPercentageComponent } from './user-sales-dashboard/dashboard/sold-items-percentage/sold-items-percentage.component';
+import { UserRevenueComponent } from './user-sales-dashboard/dashboard/user-revenue/user-revenue.component';
+import { ItemSellingRatioComponent } from './user-sales-dashboard/dashboard/item-selling-ratio/item-selling-ratio.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +77,12 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
     ContactUsComponent,
     LogoutButtonComponent,
     SearchPipe,
-    UserFilterPipe
+    UserFilterPipe,
+    DashboardComponent,
+    AnnuallSalesComponent,
+    SoldItemsPercentageComponent,
+    UserRevenueComponent,
+    ItemSellingRatioComponent
   ],
   imports: [
     BrowserModule,
