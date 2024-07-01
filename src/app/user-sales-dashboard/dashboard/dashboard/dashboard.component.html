@@ -1,1 +1,22 @@
-<p>dashboard works!</p>
+
+<div class="card flex justify-content-center tab-wrapper">
+    <p-card header="User Dashboard">
+        
+<div class="card tab-view">
+    <p-tabView>
+        <p-tabPanel header="Annual Sales">
+            <app-annuall-sales />
+        </p-tabPanel>
+        <p-tabPanel header="Item Selling Ratio">
+            <app-item-selling-ratio />
+        </p-tabPanel>
+        <p-tabPanel header="Sold Items Percentage">
+            <app-sold-items-percentage />
+        </p-tabPanel>
+        <p-tabPanel header="User Revenue">
+            <app-user-revenue />
+        </p-tabPanel>
+    </p-tabView>
+</div>
+    </p-card>
+</div>

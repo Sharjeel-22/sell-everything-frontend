@@ -10,7 +10,6 @@ import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { UpdateUserDetailComponent } from './update-user-detail/update-user-detail.component';
 import { UpdatePasswordComponent } from './update-password/update-password.component';
 import { ResourceSectionComponent } from './resource-section/resource-section.component';
-import { AddNewResourceButtonComponent } from './add-new-resource-button/add-new-resource-button.component';
 import { AddNewResourceComponent } from './add-new-resource/add-new-resource.component';
 import { AuthGuard } from './auth.guard';
 import { AdminSectionComponent } from './admin-section/admin-section.component';
@@ -35,8 +34,8 @@ const routes: Routes = [
     component: UserRegistrationComponent
   },
   {
-    path:'contact-us',
-    component:ContactUsComponent
+    path: 'contact-us',
+    component: ContactUsComponent
   },
   {
     path: 'home',
@@ -65,7 +64,7 @@ const routes: Routes = [
         component: UpdateUserComponent
       },
       {
-        path: 'update-passowrd/:id',
+        path: 'update-password/:id',
         component: UpdatePasswordComponent
       },
       {
@@ -86,6 +85,10 @@ const routes: Routes = [
         component: UpdateResourceComponent
       }
     ]
+  },
+  {
+    path: 'user-dashboard',
+    loadComponent: () => import('./user-sales-dashboard/dashboard/dashboard/dashboard.component').then(m =>  m.DashboardComponent)
   },
   {
     path: '**',
