@@ -1,0 +1,1 @@
+export const ITEMS_SALES_RATIO = [65, 59, 80, 81, 56, 55, 48,23,66,89,43,44];

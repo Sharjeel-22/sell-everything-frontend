@@ -19,6 +19,7 @@ export class AnnuallSalesComponent implements OnInit{
   private surfaceBorder: WritableSignal<string> = signal<string>("");
   
 private readonly annuallSalesDetails = inject(DashboardDataProviderService);
+
   ngOnInit():void {
       this.annualSalesChart();
   }
