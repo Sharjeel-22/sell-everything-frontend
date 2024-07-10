@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ServiceService } from './service/service.service';
 import { StorageServiceService } from './storageService/storage-service.service';
+import { StateService } from './core/state/state.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { StorageServiceService } from './storageService/storage-service.service'
 })
 export class AppComponent {
   title = 'frontend';
-  constructor(private service: ServiceService, private storageService: StorageServiceService) { }
+  constructor(private service: ServiceService, private storageService: StorageServiceService,private readonly stateService:StateService) { }
 
 
   ngOnInit(): void {
@@ -18,6 +19,7 @@ export class AppComponent {
           this.service.changeStatus$.next(false);
           }else {
             this.service.changeStatus$.next(true);
+            this.stateService.loadAllResource();
           }
   }
 }

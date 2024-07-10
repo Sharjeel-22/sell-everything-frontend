@@ -1,8 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, effect, OnInit, signal, WritableSignal } from '@angular/core';
 import { AdminService } from '../adminService/admin.service';
 import { StorageServiceService } from '../storageService/storage-service.service';
 import { Router } from '@angular/router';
 import { ResourceService } from '../resourceService/resource.service';
+import { StateService } from '../core/state/state.service';
+interface Comment {
+  comment: string;
+  status: string;
+  userId: string;
+  userImageURL: string;
+  userName: string;
+  _id: string;
+}
+
+interface ResponseObject {
+  comments: Comment[];
+  createdAt: string;
+  description: string;
+  imageURL: string;
+  status: string;
+  title: string;
+  updatedAt: string;
+  userId: string;
+  __v: number;
+  _id: string;
+}
 
 @Component({
   selector: 'app-resource-item-list',
@@ -11,6 +33,8 @@ import { ResourceService } from '../resourceService/resource.service';
 })
 export class ResourceItemListComponent implements OnInit {
   public resources: any[]=[];
+  public resourcesProvider: WritableSignal<ResponseObject[]> = signal<ResponseObject[]>([]);
+  public loading: WritableSignal<boolean> = signal<boolean>(false);
   public displayItemCount = 5;
   public showAllItems = false;
   public searchText:any;
@@ -18,8 +42,20 @@ export class ResourceItemListComponent implements OnInit {
   constructor(
     private resouceService: ResourceService,
     private storageService: StorageServiceService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private readonly stateService:StateService
+  ) { 
+
+    effect(() => {
+      if(!this.stateService.loading()){
+        this.resourcesProvider.set(this.stateService.resourceList())
+        this.loading.set(this.stateService.loading());
+        console.log("After set signal value :: ",this.resourcesProvider())
+      }else {
+        this.loading.set(this.stateService.loading());
+      }
+    },{allowSignalWrites:true})
+  }
 
   ngOnInit(): void {
     this.getAllResource();
