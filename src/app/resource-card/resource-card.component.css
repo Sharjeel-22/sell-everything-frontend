@@ -15,7 +15,7 @@
   
   .dots-button {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     width: 40px;
     height: 30px; 
     background-color: whitesmoke;
@@ -182,7 +182,7 @@
 .input-container {
   margin: 20px;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 /* Input field */

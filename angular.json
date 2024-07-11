@@ -16,6 +16,10 @@
             "outputPath": "dist/frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "allowedCommonJsDependencies": [
+              "sweetalert2",
+              "@canvasjs/angular-charts"
+            ],
             "polyfills": [
               "zone.js"
             ],
