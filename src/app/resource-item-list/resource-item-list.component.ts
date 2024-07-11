@@ -4,27 +4,8 @@ import { StorageServiceService } from '../storageService/storage-service.service
 import { Router } from '@angular/router';
 import { ResourceService } from '../resourceService/resource.service';
 import { StateService } from '../core/state/state.service';
-interface Comment {
-  comment: string;
-  status: string;
-  userId: string;
-  userImageURL: string;
-  userName: string;
-  _id: string;
-}
+import { RESOURCE } from '../core/interfaces/ResourceInterface';
 
-interface ResponseObject {
-  comments: Comment[];
-  createdAt: string;
-  description: string;
-  imageURL: string;
-  status: string;
-  title: string;
-  updatedAt: string;
-  userId: string;
-  __v: number;
-  _id: string;
-}
 
 @Component({
   selector: 'app-resource-item-list',
@@ -33,7 +14,7 @@ interface ResponseObject {
 })
 export class ResourceItemListComponent implements OnInit {
   public resources: any[]=[];
-  public resourcesProvider: WritableSignal<ResponseObject[]> = signal<ResponseObject[]>([]);
+  public resourcesProvider: WritableSignal<RESOURCE[]> = signal<RESOURCE[]>([]);
   public loading: WritableSignal<boolean> = signal<boolean>(false);
   public displayItemCount = 5;
   public showAllItems = false;
