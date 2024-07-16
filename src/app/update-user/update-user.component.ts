@@ -1,20 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from '../adminService/admin.service';
 import { StorageServiceService } from '../storageService/storage-service.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { User } from '../model/User';
 @Component({
   selector: 'app-update-user',
   templateUrl: './update-user.component.html',
   styleUrls: ['./update-user.component.css']
 })
-export class UpdateUserComponent {
+export class UpdateUserComponent implements OnInit{
+  private readonly adminService = inject(AdminService);
+  private readonly storageService = inject(StorageServiceService);
+  private readonly router = inject(Router);
   public showImg: boolean = false;
   public ImgStore: string = '';
   public form!: FormGroup;
   public selectedFile: any;
-  public user = {
+  public user:User = {
     id: "",
     firstName: "",
     lastName: "",
@@ -24,14 +28,12 @@ export class UpdateUserComponent {
     imageURL: ""
   };
 
-  constructor(private adminService: AdminService, private storageService: StorageServiceService, private router: Router) { }
   ngOnInit(): void {
     this.formValidation();
   }
 
   public formValidation(): void {
     let data = this.storageService.getLocalStorage("user-detail");
-    console.log("data :: ",data);
     this.user.firstName = data.firstName;
     this.user.lastName = data.lastName;
     this.user.imageURL = data.imageURL;

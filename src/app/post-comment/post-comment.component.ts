@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ResourceService } from '../resourceService/resource.service';
+import { Component, inject } from '@angular/core';
 import { StorageServiceService } from '../storageService/storage-service.service';
 import { ServiceService } from '../service/service.service';
 
@@ -8,17 +7,12 @@ import { ServiceService } from '../service/service.service';
   templateUrl: './post-comment.component.html',
   styleUrls: ['./post-comment.component.css']
 })
-export class PostCommentComponent implements OnInit{
-
+export class PostCommentComponent {
+  private readonly storageService = inject(StorageServiceService);
+  private readonly service = inject(ServiceService)
   public comment = "";
-  constructor(private resourceService:ResourceService,private storageService:StorageServiceService,private service:ServiceService){}
-
-  ngOnInit(): void {
-    
-  }
 
   public postComment():void{
-    let token = this.storageService.getSession("token");
     let userId = this.storageService.getLocalStorage("currentUser");
     this.service.findUserById(userId).subscribe((res:any) => {
       if(res.result.length > 1){

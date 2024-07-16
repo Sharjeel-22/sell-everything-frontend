@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ResourceService } from '../resourceService/resource.service';
 import { StorageServiceService } from '../storageService/storage-service.service';
 import { ServiceService } from '../service/service.service';
@@ -11,6 +11,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./resource-card.component.css']
 })
 export class ResourceCardComponent implements OnInit{
+  private readonly resourceService = inject(ResourceService);
+  private readonly storageService = inject(StorageServiceService);
+  private readonly service = inject(ServiceService);
+  private readonly router =inject(Router);
   public resources:any[]=[];
   public postId="";
   public comment:any;
@@ -21,13 +25,6 @@ export class ResourceCardComponent implements OnInit{
   public inputValue:any;
   public searchText:any;
   public noResultsFound: boolean = false;
-
-  constructor(
-    private resourceService:ResourceService,
-    private storageService:StorageServiceService,
-    private service:ServiceService,
-    private router:Router
-    ){}
 
   ngOnInit(): void {
     this.getAllResources();
@@ -47,7 +44,6 @@ export class ResourceCardComponent implements OnInit{
   }
   public postComment(id:any,comment:any):void{
     this.tempLoader[id]=!this.tempLoader[id];
-    let token = this.storageService.getSession("token");
     let userId = this.storageService.getLocalStorage("currentUser");
     this.service.findUserById(userId).subscribe((res:any) => {
       let user = {
@@ -109,7 +105,6 @@ export class ResourceCardComponent implements OnInit{
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        let token = this.storageService.getSession("token");
         let data ={
           postId:postId,
           id: id

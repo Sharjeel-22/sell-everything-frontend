@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AdminService } from '../adminService/admin.service';
 import { StorageServiceService } from '../storageService/storage-service.service';
 import { Router } from '@angular/router';
@@ -13,13 +13,10 @@ export class AdminSectionComponent implements OnInit{
   public displayItemCount = 5;
   public showAllItems = false;
   public searchText:any;
-
-  constructor(
-    private adminService:AdminService,
-    private storageService:StorageServiceService,
-    private router:Router
-    ){}
-
+  private adminService = inject(AdminService);
+  private storageService = inject(StorageServiceService);
+  private router = inject(Router);
+  
   ngOnInit(): void {
     this.getAllUsers();
   }

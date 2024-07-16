@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ResourceService } from '../resourceService/resource.service';
-import { StorageServiceService } from '../storageService/storage-service.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-resource-section',

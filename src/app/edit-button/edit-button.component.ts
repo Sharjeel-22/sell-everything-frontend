@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { StorageServiceService } from '../storageService/storage-service.service';
 import { Router } from '@angular/router';
 
@@ -7,15 +7,10 @@ import { Router } from '@angular/router';
   templateUrl: './edit-button.component.html',
   styleUrls: ['./edit-button.component.css']
 })
-export class EditButtonComponent implements OnInit {
+export class EditButtonComponent {
   @Input() user: any;
-
-  constructor(private storageService: StorageServiceService, private router: Router) {
-
-  }
-
-  ngOnInit(): void {
-  }
+  private readonly storageService = inject(StorageServiceService);
+  private readonly router = inject(Router);
 
   public onEditUser(): void {
     this.storageService.localStorage("user-detail", this.user);

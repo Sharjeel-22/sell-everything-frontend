@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ServiceService } from './service/service.service';
 import { StorageServiceService } from './storageService/storage-service.service';
 import { StateService } from './core/state/state.service';
@@ -9,9 +9,9 @@ import { StateService } from './core/state/state.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'frontend';
-  constructor(private service: ServiceService, private storageService: StorageServiceService,private readonly stateService:StateService) { }
-
+  private readonly service = inject(ServiceService);
+  private readonly storageService = inject(StorageServiceService);
+  private readonly stateService = inject(StateService);
 
   ngOnInit(): void {
     let role = this.storageService.getSession("userRole");

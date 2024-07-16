@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { StorageServiceService } from '../storageService/storage-service.service';
 import { Router } from '@angular/router';
@@ -11,14 +11,15 @@ import Swal from 'sweetalert2';
   templateUrl: './update-resource.component.html',
   styleUrls: ['./update-resource.component.css']
 })
-export class UpdateResourceComponent {
+export class UpdateResourceComponent implements OnInit{
+  private readonly servie = inject(ResourceService);
+  private readonly storageService = inject(StorageServiceService);
+  private readonly router = inject(Router);
   public showImg: boolean = false;
   public ImgStore: string = '';
   public selectedFile:any;
   public form!:FormGroup;
   public resource:any;
-
-  constructor(private servie:ResourceService,private storageService:StorageServiceService,private router:Router){}
 
   ngOnInit(): void {
     this.syncCurrentResource();
@@ -26,7 +27,6 @@ export class UpdateResourceComponent {
 
   public syncCurrentResource():void {
     this.resource = this.storageService.getLocalStorage("currentResource");
-    console.log("Check :: ",this.resource)
     this.formValidation();
   }
   

@@ -1,4 +1,4 @@
-import { Component, OnInit, WritableSignal, effect, signal } from '@angular/core';
+import { Component, OnInit, WritableSignal, effect, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { StorageServiceService } from '../storageService/storage-service.service';
 import { Router } from '@angular/router';
@@ -16,8 +16,11 @@ export class AddNewResourceComponent implements OnInit{
   public selectedFile:any;
   public form!:FormGroup;
   public progressBar:WritableSignal<number>=signal<number>(0);
+  private service = inject(ResourceService);
+  private storageService = inject(StorageServiceService);
+  private router = inject(Router);
 
-  constructor(private service:ResourceService,private storageService:StorageServiceService,private router:Router){
+  constructor(){
     effect(() => {
       this.progressBar.set(this.service.progressProvider());
     },{allowSignalWrites:true})

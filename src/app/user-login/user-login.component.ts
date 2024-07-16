@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ServiceService } from '../service/service.service';
 import Swal from 'sweetalert2';
@@ -11,10 +11,12 @@ import { StorageServiceService } from '../storageService/storage-service.service
   styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent implements OnInit {
-
-  form!: FormGroup;
-  loader: boolean = false;
-  constructor(private service: ServiceService, private router: Router, private storageService: StorageServiceService) { }
+  private readonly service = inject(ServiceService);
+  private readonly router = inject(Router);
+  private readonly storageService = inject(StorageServiceService);
+  public form!: FormGroup;
+  public loader: boolean = false;
+  
   ngOnInit(): void {
     this.formValidation();
   }
@@ -38,7 +40,6 @@ export class UserLoginComponent implements OnInit {
         this.storageService.localStorage("currentUser", res.user._id);
         this.storageService.setSession("token",res.user.token);
         this.storageService.setSession("userRole",res.user.role);
-        console.log("Check Role :: ",res.user.role)
         setTimeout(() => {
           Swal.fire({
             position: 'top-end',

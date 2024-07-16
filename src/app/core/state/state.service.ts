@@ -1,4 +1,4 @@
-import { computed, Injectable } from '@angular/core';
+import { computed, inject, Injectable } from '@angular/core';
 import { signalState, patchState, PartialStateUpdater } from '@ngrx/signals';
 import { ResourceService } from 'src/app/resourceService/resource.service';
 
@@ -37,15 +37,12 @@ export class StateService {
   public readonly numbersOfUsers = computed(() => {
     return this.users().length;
   });
-
-  constructor(private resourceService: ResourceService) {}
+  private resourceService = inject(ResourceService);
 
   public loadAllResource() {
     this.setLoadingState(true);
     this.resourceService.getAllResouces().subscribe((res: any) => {
-      console.log("Before patchState :: ", this.resourceState().data);
       patchState(this.resourceState, { data: res.results });
-      console.log("After patchState :: ", this.resourceState().data);
       this.setLoadingState(false);
     });
   }

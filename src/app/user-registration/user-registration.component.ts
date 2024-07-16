@@ -1,7 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component,inject,OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ServiceService } from '../service/service.service';
-import { User } from '../model/User';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
@@ -12,12 +11,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-registration.component.css']
 })
 export class UserRegistrationComponent implements OnInit {
+  private readonly service = inject(ServiceService);
+  private readonly router  = inject(Router);
   public showImg: boolean = false;
   public ImgStore: string = '';
   public form!: FormGroup;
   public selectedFile:any;
   
-  constructor(private service:ServiceService,private router:Router){}
   ngOnInit(): void {
     this.formValidation();
   }
@@ -43,7 +43,6 @@ export class UserRegistrationComponent implements OnInit {
     formData.set('imageURL',this.selectedFile);
     formData.append('data',JSON.stringify(userDetail))
     this.service.registration(formData).subscribe((res:any) => {
-      console.log("Response",res);
       setTimeout(() => {
         Swal.fire({
           position: 'top-end',

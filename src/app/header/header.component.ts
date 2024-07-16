@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { StorageServiceService } from '../storageService/storage-service.service';
 import { Router } from '@angular/router';
 import { ServiceService } from '../service/service.service';
@@ -12,8 +12,9 @@ export class HeaderComponent implements OnInit{
   public showItems: boolean = false;
   public isAdmin: boolean = false;
   public isLogin: boolean = false;
-
-  constructor(private storageService:StorageServiceService,private service:ServiceService,private router:Router){}
+  private readonly storageService =inject(StorageServiceService);
+  private readonly service = inject(ServiceService);
+  private router = inject(Router);
 
   ngOnInit(): void {
     this.showSpacificItems();
@@ -36,7 +37,6 @@ export class HeaderComponent implements OnInit{
 
   public showSpacificItems():void {
       this.service.changeStatus$.subscribe((res:any) => {
-        console.log("ssss",res)
         if(res) {
           let role = this.storageService.getSession("userRole");
           this.isAdmin = role == "admin" ? true : false;

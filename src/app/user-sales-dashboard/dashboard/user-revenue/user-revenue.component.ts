@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
+import { ChartData, ChartOptions } from './interfaces/ChartModel';
+
+  
 @Component({
   selector: 'app-user-revenue',
   templateUrl: './user-revenue.component.html',
@@ -8,9 +11,8 @@ import { ChartModule } from 'primeng/chart';
   styleUrls: ['./user-revenue.component.css']
 })
 export class UserRevenueComponent {
-  data: any;
-
-  options: any;
+  public data!: ChartData;
+  public options!: ChartOptions;
 
   ngOnInit() {
       const documentStyle = getComputedStyle(document.documentElement);

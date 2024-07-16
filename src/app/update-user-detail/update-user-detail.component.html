@@ -6,29 +6,29 @@
                 <img [src]="user.imageURL" alt="">
             </div>
         </div>
-        <label>
+        <label for="dummy">
         </label>
         <div class="flex">
-            <label>
+            <label for="firstName">
                 <input formControlName="firstName" name="firstName" readonly placeholder="" type="text" class="input">
                 <span>First name</span>
             </label>
-            <label>
+            <label for="lastName">
                 <input formControlName="lastName" readonly name="lastName" placeholder="" type="text" class="input">
                 <span>Lastname</span>
             </label>
         </div>
 
-        <label>
+        <label for="email">
             <input placeholder="" type="email" formControlName="email" name="email" class="input">
             <span>Email</span>
         </label>
 
-        <label>
+        <label for="password">
             <input formControlName="password" name="password" placeholder="" type="text" class="input">
             <span>Password</span>
         </label>
-        <label>
+        <label for="role">
             <input formControlName="role" name="Role" placeholder="" type="text" class="input">
             <span>Role</span>
         </label>

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { StorageServiceService } from '../storageService/storage-service.service';
 import { Router } from '@angular/router';
 import { ServiceService } from '../service/service.service';
 import Swal from 'sweetalert2';
+import { UserData } from '../core/interfaces/UserDataModel';
 
 
 @Component({
@@ -11,7 +12,10 @@ import Swal from 'sweetalert2';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  public userData = {
+  private readonly storageService = inject(StorageServiceService);
+  private readonly service = inject(ServiceService);
+  private readonly router = inject(Router);
+  public userData:UserData = {
     id:"",
     firstName: "",
     lastName: "",
@@ -23,8 +27,6 @@ export class UserProfileComponent implements OnInit {
     imageURL: ""
   };
   public loader: boolean = false;
-
-  constructor(private storageService: StorageServiceService, private router: Router, private service: ServiceService) { }
 
   ngOnInit(): void {
     this.getCurrentUser();

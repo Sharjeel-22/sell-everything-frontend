@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { StorageServiceService } from '../storageService/storage-service.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { matchpassword } from './confirmpasswordvalidators';
 import { Router } from '@angular/router';
 
@@ -10,12 +10,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./update-password.component.css']
 })
 export class UpdatePasswordComponent implements OnInit {
-
+  private readonly storageService = inject(StorageServiceService);
+  private readonly router = inject(Router);
   public ChangePasswordForm: FormGroup;
   public pass: any;
 
-  constructor(private storageService: StorageServiceService, private router: Router) {
-
+  constructor() {
     this.ChangePasswordForm = new FormGroup({
       password: new FormControl("", [Validators.required,]),
       confirm_password: new FormControl("", [Validators.required,]),
