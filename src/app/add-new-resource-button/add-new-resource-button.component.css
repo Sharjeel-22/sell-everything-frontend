@@ -2,13 +2,10 @@
     position: relative;
     width: 400px;
     height: 200px;
-    border: 2px solid red;
     align-items: center;
     display: flex;
     justify-content: center;
     border-radius: 0.75rem;
-    background-color: rgb(252, 252, 252);
-    border: #eee 1px solid;
   }
   
   .voltage-button button {
