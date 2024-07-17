@@ -3,7 +3,7 @@
         <p class="title">Upload Resource</p>
         <div class="show-selected-image">
             <div class="flex-img">
-                <img [src]="resource.imageURL" alt="">
+                <img [lazyLoad]="resource.imageURL" alt="">
             </div>            
         </div>
         <label for="title">

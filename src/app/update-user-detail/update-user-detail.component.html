@@ -3,7 +3,7 @@
         <p class="title">User Update </p>
         <div class="show-selected-image">
             <div class="flex-img">
-                <img [src]="user.imageURL" alt="">
+                <img [lazyLoad]="user.imageURL" alt="">
             </div>
         </div>
         <label for="dummy">

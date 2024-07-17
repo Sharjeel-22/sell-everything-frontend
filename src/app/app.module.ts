@@ -39,6 +39,7 @@ import { LogoutButtonComponent } from './logout-button/logout-button.component';
 import { SearchPipe } from './pipe/search.pipe';
 import { UserFilterPipe } from './pipe/user-filter.pipe';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,7 +80,8 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    LazyLoadImageModule 
   ],
   providers: [AuthGuard, RoleGuard, AdminGuard,{
     provide: HTTP_INTERCEPTORS,

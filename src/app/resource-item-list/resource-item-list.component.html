@@ -16,7 +16,7 @@
               <ng-container *ngFor="let resource of resources | search:searchText; let i = index">
                 <tr>
                   <td>
-                    <img [src]="resource.imageURL" height="30px" width="30px" alt="" class="image" />
+                    <img [lazyLoad]="resource.imageURL" height="30px" width="30px" alt="" class="image" />
                     <b style="margin-left: 10px">{{
                       resource.title
                       }}</b>

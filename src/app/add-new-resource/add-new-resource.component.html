@@ -3,7 +3,7 @@
         <p class="title">Upload Resource</p>
         <div class="show-selected-image">
             <div class="flex-img" *ngIf="showImg">
-                <img [src]="ImgStore" alt="">
+                <img [lazyLoad]="ImgStore" alt="">
             </div>
         </div>
         <div class="flex-file">

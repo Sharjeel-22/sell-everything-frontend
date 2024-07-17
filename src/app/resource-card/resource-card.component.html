@@ -11,7 +11,7 @@
       </div>
       <div class="wrapper">
         <div>
-            <img [src]="re?.imageURL" class="image" alt="">
+            <img [lazyLoad]="re?.imageURL" class="image" alt="Resource Image">
         </div>
         <div class="content">
           <a href="#">
@@ -30,7 +30,7 @@
                   <span class="dots-text">...</span>
                 </button>
               </div>
-              <img [src]="comment.userImageURL" width="60" height="60" alt="" />
+              <img [lazyLoad]="comment.userImageURL" width="60" height="60" alt="" />
               <span><h1 style="display: inline">{{comment.userName}}</h1></span>
               <p>
                 {{comment.comment}}
