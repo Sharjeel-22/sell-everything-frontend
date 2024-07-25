@@ -9,6 +9,7 @@ import { StateService } from './core/state/state.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  public title = "frontend"
   private readonly service = inject(ServiceService);
   private readonly storageService = inject(StorageServiceService);
   private readonly stateService = inject(StateService);
