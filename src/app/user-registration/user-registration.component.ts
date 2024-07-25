@@ -56,7 +56,6 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    debugger
     const userDetail = {
       firstName: this.form.value.firstName,
       lastName: this.form.value.lastName,
