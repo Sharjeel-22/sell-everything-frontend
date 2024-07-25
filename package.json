@@ -26,6 +26,7 @@
     "@ngrx/signals": "^17.2.0",
     "@ngrx/store": "^18.0.1",
     "chart.js": "^4.4.3",
+    "device-detector-js": "^3.0.3",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "ng-lazyload-image": "^9.1.3",
