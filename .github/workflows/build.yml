@@ -11,34 +11,14 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [20.10.0] # Set Node.js version to 20.10.0
-
     steps:
     - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
+      name: Checkout code
+    - name: Use Node.js 20.10.0
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 20.10.0
         cache: 'npm'
     - run: npm install --force
-    # - run: npm run test -- --watch=false --browsers=ChromeHeadless
+    - run: npm install @angular/cli --force
     - run: npm run build
-    - name: Upload production build artifacts
-      # uses: actions/upload-artifact@v3
-      with:
-        name: angular-app
-        path: |
-          dist/
-    - name: Deploy to Server
-      if: github.ref == 'refs/heads/main'
-      run: |
-        echo "Deploying application..."
-        # Example deployment script
-        # Replace the following with your actual deployment commands
-        # Example: rsync -avz dist/ user@server:/path/to/deploy
-        # or using an action
-        # - uses: some-action-for-deployment@v1
-        #   with:
-        #     args: ...
